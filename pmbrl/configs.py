@@ -32,6 +32,7 @@ def get_config(args):
     config.set_logdir(args.logdir)
     config.set_seed(args.seed)
     config.set_strategy(args.strategy)
+    config.record_every = args.record_every
     return config
 
 

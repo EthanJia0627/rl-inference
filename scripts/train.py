@@ -100,10 +100,10 @@ def main(args):
         logger.log_losses(ensemble_loss, reward_loss)
 
         recorder = None
-        if args.record_every is not None and args.record_every % episode == 0:
+        if args.record_every is not None and episode % args.record_every == 1:
             filename = logger.get_video_path(episode)
             recorder = VideoRecorder(env.unwrapped, path=filename)
-            logger.log("Setup recoder @ {}".format(filename))
+            logger.log("Setup recorder @ {}".format(filename))
 
         logger.log("\n=== Collecting data [{}] ===".format(episode))
         reward, steps, stats = agent.run_episode(
@@ -126,6 +126,7 @@ if __name__ == "__main__":
     parser.add_argument("--config_name", type=str, default="mountain_car")
     parser.add_argument("--strategy", type=str, default="information")
     parser.add_argument("--seed", type=int, default=0)
+    parser.add_argument("--record_every", type=int, default=5)
     args = parser.parse_args()
     config = get_config(args)
     main(config)

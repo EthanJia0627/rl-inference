@@ -53,7 +53,6 @@ class Agent(object):
                     buffer.add(state, action, reward, next_state)
                 if recorder is not None:
                     recorder.capture_frame()
-
                 state = deepcopy(next_state)
                 if done:
                     break
